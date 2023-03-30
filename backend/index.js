@@ -1,5 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
+
 const mongoose = require('mongoose')
 const Text = require('./text-model.js')
 
@@ -17,12 +19,13 @@ mongoose
         console.error('Connection error', e.message)
     })
 
+app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.post('/text', async (req,res) => {
   let text = req.body.text
-  if (text === null){
+  if (!text){
     return res
             .status(400)
             .json({
