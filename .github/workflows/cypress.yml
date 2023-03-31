@@ -32,6 +32,7 @@ jobs:
       - name: Start server
         working-directory: ./backend
         run: pwd && nodemon index.js
+        background: true
 
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
