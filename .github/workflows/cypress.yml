@@ -40,7 +40,7 @@ jobs:
         run: node index.js &
         env:
           PORT: ${{ env.PORT }}
-          DB: $${{ env.DB }}
+          DB: ${{ env.DB }}
 
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
