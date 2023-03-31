@@ -20,14 +20,9 @@ jobs:
         working-directory: ./backend
         run: npm install
 
-      #Run server in background by ending command w/a "&"
-      - name: Start server
-        working-directory: ./backend
-        run: node index.js &
-        env:
-          PORT: ${{ secrets.PORT }}
-          DB: ${{ secrets.DB }}
-
       - name: Run the tests
         working-directory: ./backend
         run: npm test
+        env:
+          PORT: ${{ secrets.PORT }}
+          DB: ${{ secrets.DB }}
