@@ -57,7 +57,6 @@ app.get('/texts', async (req,res) => {
 
 app.get('/', (req, res) => {
   res.send('Express Server');
-  
 });
 
 app.delete('/text', async (req, res) => {
