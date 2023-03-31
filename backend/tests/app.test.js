@@ -3,7 +3,7 @@ const request = require("supertest");
 const app = require('../app')
 
 const dotenv = require('dotenv');
-dotenv.config();
+dotenv.config('../.env');
 
 /* Connecting to the database before each test. */
 beforeEach(async () => {
