@@ -29,6 +29,22 @@ function App() {
       .then((data) => setTexts(data.texts))
       .catch((error) => setError("Oops! Make sure you entered text"));
 
+  const deleteText = (text) => {
+    fetch('http://localhost:4000/text', {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({text: text})
+    })
+      .then((response) => {
+        if (!response.ok) throw response
+        return response.json();
+      })
+      .then((data) => setTexts(data.texts))
+      .catch((error) => setError("Oops! Make sure you entered text"));
+  }
+
   return (
     <div className="App">
       <div>
@@ -40,7 +56,8 @@ function App() {
       <div>
         <span>List of texts: </span>
         <ul> 
-          {texts.map((text) => <li>{text}</li>)}
+          {texts.map((text) => <li>{text} <button onClick={() => deleteText(text)}>Delete</button></li>)}
+          
         </ul>
       </div>
 
