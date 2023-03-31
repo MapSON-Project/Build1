@@ -28,8 +28,7 @@ jobs:
 
       - name: Start server
         working-directory: ./backend
-        run: nodemon index.js &
-        background: true
+        run: nodemon index.js
 
         
       - name: Setup Node
