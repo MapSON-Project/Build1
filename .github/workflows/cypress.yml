@@ -15,6 +15,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 15
+      
+      - name: Install Nodemon
+        run: npm install -g nodemon
 
       - name: Load backend's environment variables
         working-directory: ./backend
@@ -30,11 +33,6 @@ jobs:
         working-directory: ./backend
         run: pwd && nodemon index.js
 
-        
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 15
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
