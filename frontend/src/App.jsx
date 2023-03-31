@@ -12,6 +12,7 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => setTexts(data.texts));
+      
   }, []);
 
   const addText = () => 
