@@ -16,16 +16,19 @@ jobs:
         with:
           node-version: 15
 
-      - name: Load backend's environment variables
+      - name: 'Create env file for backend'
         working-directory: ./backend
         run: |
-          echo "$ENV_VARS" > .env
-          source .env
+          touch .env
+          echo PORT=${{ secrets.PORT }} >> .env
+          echo API_KEY=${{ secrets.DB }} >> .env
+          cat .env
 
       - name: Install backend dependencies
         working-directory: ./backend
         run: npm install
 
+      #Run server in background by ending command w/a "&"
       - name: Start server
         working-directory: ./backend
         run: node index.js &
