@@ -6,6 +6,7 @@ dotenv.config();
 
 const port = process.env.PORT;
 
+// setup DB
 mongoose
     .connect(process.env.DB, { useNewUrlParser: true })
     .then(() => {

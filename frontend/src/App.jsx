@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-// prefix for API URL
+// prefix for API URL for fetch requests
 const API_PREFIX = "https://sea-turtle-app-qlvxz.ondigitalocean.app/api";
 
 function App() {
