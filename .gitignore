@@ -4,3 +4,7 @@ backend/node_modules
 
 frontend/.env
 backend/.env
+frontend/cypress/screenshots/*
+frontend/cypress/videos/*
+
+
