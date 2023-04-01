@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 
 // prefix for API URL
-const { API_PREFIX } = process.env ?? "http://localhost:4000";
+const { API_PREFIX } = "https://sea-turtle-app-qlvxz.ondigitalocean.app/api";
 
 function App() {
   const [texts, setTexts] = useState([]);
