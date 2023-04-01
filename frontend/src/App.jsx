@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
+// prefix for API URL
+const API_PREFIX = "https://sea-turtle-app-qlvxz.ondigitalocean.app/api";
+
 function App() {
   const [texts, setTexts] = useState([]);
   const [text, setText] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch('http://localhost:4000/texts', {
+    fetch(`${API_PREFIX}/texts`, {
       method: "GET",
     })
       .then((response) => response.json())
@@ -15,7 +18,7 @@ function App() {
   }, []);
 
   const addText = () => 
-    fetch('http://localhost:4000/text', {
+    fetch(`${API_PREFIX}/text`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +33,7 @@ function App() {
       .catch((error) => setError("Oops! Make sure you entered text"));
 
   const deleteText = (text) => {
-    fetch('http://localhost:4000/text', {
+    fetch(`${API_PREFIX}/text`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
