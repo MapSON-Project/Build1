@@ -33,11 +33,14 @@ describe("GET /texts", () => {
 
 describe("POST /text", () => {
     it("should return an array in which the string \"hello world\" is the last element", async () => {
-        const res = await request(app).post('/text').send({
+        let res = await request(app).get('/texts')
+        const ogLength = res.body.texts.length
+        res = await request(app).post('/text').send({
             text: 'hello world'
         })
         expect(res.statusCode).toBe(200)
         expect(res.body.texts.slice(-1)[0]).toBe('hello world')
+        expect(res.body.texts.length - 1).toBe(ogLength)
     })
 
     it("should return an error message", async () => {
@@ -57,7 +60,7 @@ describe("DELETE /text", () => {
         expect(res.statusCode).toBe(200)
         expect(res.body.text).toBe('hello world')
         if(ogLength > 0) {
-            expect(res.body.texts.length < ogLength).toBe(true)
+            expect(res.body.texts.length + 1).toBe(ogLength)
         }
     })
 
