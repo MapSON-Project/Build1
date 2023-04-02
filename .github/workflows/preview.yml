@@ -1,54 +1,53 @@
-# name: GitHub Actions Vercel Preview Deployment
-# env:
-#   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-#   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-# on:
-#   push:
-#     branches-ignore:
-#       - main
-# jobs:
-#   Deploy-Preview:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v3
-#       - name: Install Vercel CLI
-#         run: npm install --global vercel@canary
-#       - name: Pull Vercel Environment Information
-#         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-#       - name: Build Project Artifacts
-#         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
-#       - name: Deploy Project Artifacts to Vercel
-#         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
-name: "Deploy Preview"
-
+name: GitHub Actions Vercel Preview Deployment
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
   push:
     branches-ignore:
       - main
-  workflow_dispatch:
-
 jobs:
-  vercel: 
+  Deploy-Preview:
     runs-on: ubuntu-latest
-    name: "Deploy front-end preview"
-
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '14'
-          registry-url: https://registry.npmjs.org/
+      - uses: actions/checkout@v3
+      - name: Install Vercel CLI
+        run: npm install --global vercel@canary
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+# name: "Deploy Preview"
 
-      - name: "Deploy to Vercel"
-        run: |
-          prodRun=""
-          if [[ ${GITHUB_REF} == "refs/heads/main" ]]; then
-            prodRun="--preview"
-          fi
+# on:
+#   push:
+#     branches-ignore:
+#       - main
+#   workflow_dispatch:
 
-          npx vercel --token ${VERCEL_TOKEN} $prodRun
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          SCOPE: team_SmVoIwRNKhgxOgMiZV6iKhqt
+# jobs:
+#   vercel: 
+#     runs-on: ubuntu-latest
+#     name: "Deploy front-end preview"
+
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: actions/setup-node@v1
+#         with:
+#           node-version: '14'
+#           registry-url: https://registry.npmjs.org/
+
+#       - name: "Deploy to Vercel"
+#         run: |
+#           prodRun=""
+#           if [[ ${GITHUB_REF} == "refs/heads/main" ]]; then
+#             prodRun="--preview"
+#           fi
+
+#           npx vercel --token ${VERCEL_TOKEN} $prodRun
+#         env:
+#           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+#           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+#           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
